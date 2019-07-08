@@ -11,13 +11,12 @@
 </head>
 <body>
     <div id="comandos">
+        <label>Modos:</label>
+        <button onclick="atualizarModo('add')" style="color:forestgreen">Modo Adicionar</button>
+        <button onclick="atualizarModo('del')" style="color:forestgreen">Modo Deletar</button>
+        <button onclick="atualizarModo('change')" style="color:forestgreen">Modo Selecao</button>
+        <br>
         <button onclick="adicionarcurva()" style="color:forestgreen">Adicionar Curva</button>
-        <button onclick="deletarCurva()" style="color:firebrick">Deletar Curva</button>
-        <button onclick="selecionarCurva()">SelecionarCurva</button>
-        <!-- Número de Avaliações: <input type="number" id="aval" value = 50 onchange="mudarT(document.getElementById('aval').value)">
-        Pontos de Controle <input type="checkbox" id="pontos" onclick="mostrarPonto(document.getElementById('pontos').checked)" checked>
-        Poligonais de controle <input type="checkbox" id="poligonos"  onclick="mostrarPoligono(document.getElementById('poligonos').checked)" checked>
-        Curvas <input type="checkbox" id="curvas" onclick="mostrarCurva(document.getElementById('curvas').checked)" checked></h1> -->
         Número de Avaliações: <input type="number" id="aval" value = 50 onchange="atualizarInfo()">
         Pontos de Controle <input type="checkbox" id="pontos" onclick="atualizarInfo()" checked>
         Poligonais de controle <input type="checkbox" id="poligonos"  onclick="atualizarInfo()" checked>
@@ -47,25 +46,9 @@
                 m.sendMessage("atualizarInfo", a);
             }
 
-            // function mostrarPoligono(valorPol){
-            //     pol = valorPol;
-            //     m.sendMessage("mostrarPoligono", pol);
-            // }
-
-            // function mostrarPonto(valorPonto){
-            //     pon = valorPonto;
-            //     m.sendMessage("mostrarPonto", pon);
-            // }
-
-            // function mostrarCurva(valorCurva){
-            //     cur = valorCurva;
-            //     m.sendMessage("mostrarCurva", cur);
-            // }
-
-            // function mudarT(newt){
-            //     m.sendMessage("mudarT", newt); 
-            // }
-
+            function atualizarModo(modo){
+                m.sendMessage("atualizarModo", modo);
+            }
             function adicionarcurva(){
                 m.sendMessage("adicionarCurva",{});
             }
@@ -73,7 +56,6 @@
             function deletarCurva(){
                 m.sendMessage("deletarCurva",{});
             }
-           
         </script>
     </div>
    
