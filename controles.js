@@ -125,7 +125,23 @@ stage.on('click', function(ponto){
         for(var i = 0; i < allWorkspaces.length; i++) {
             elem = allWorkspaces[i];
             elem.pontos.forEach(pt => {
-                if(ponto.target == pt) allWorkspaces.splice(i, 1);
+                console.log(ponto.target == pt)
+                if(ponto.target == pt) {
+                    console.log(allWorkspaces)
+                    console.log(i);
+                    aux = [];
+                    for(var w = 0; w < allWorkspaces.length; w++) {
+                        if(w != i) {
+                            console.log(w)
+                            aux.push(allWorkspaces[w]);
+                        }
+                    }
+                    allWorkspaces = aux;
+                    console.log(allWorkspaces)
+                    wkNum = aux.length;
+                    workspaceAtual = aux[0];
+                    desenhe();
+                }
             })
         }
     } else if(modo = "change") {
