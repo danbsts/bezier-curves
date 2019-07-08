@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curvas de Bézier</title>
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bonsai/0.4/bonsai.min.js"></script>
+</head>
+<body>
+    <div id="comandos">
+        <button onclick="adicionarcurva()" style="color:forestgreen">Adicionar Curva</button>
+        <button onclick="deletarCurva()" style="color:firebrick">Deletar Curva</button>
+        <button onclick="selecionarCurva()">SelecionarCurva</button>
+        <!-- Número de Avaliações: <input type="number" id="aval" value = 50 onchange="mudarT(document.getElementById('aval').value)">
+        Pontos de Controle <input type="checkbox" id="pontos" onclick="mostrarPonto(document.getElementById('pontos').checked)" checked>
+        Poligonais de controle <input type="checkbox" id="poligonos"  onclick="mostrarPoligono(document.getElementById('poligonos').checked)" checked>
+        Curvas <input type="checkbox" id="curvas" onclick="mostrarCurva(document.getElementById('curvas').checked)" checked></h1> -->
+        Número de Avaliações: <input type="number" id="aval" value = 50 onchange="atualizarInfo()">
+        Pontos de Controle <input type="checkbox" id="pontos" onclick="atualizarInfo()" checked>
+        Poligonais de controle <input type="checkbox" id="poligonos"  onclick="atualizarInfo()" checked>
+        Curvas <input type="checkbox" id="curvas" onclick="atualizarInfo()" checked></h1>
+        
+        <br>
+    </div>
+    <div id = "canvas">
+        <script>
+            var m = bonsai.run(document.getElementById('canvas'),{
+                url: 'controles.js',
+                width: $(window).width(),
+                height: $(window).height()
+            });
+
+            function atualizarInfo(){
+                a = {
+                    p : Boolean,
+                    pt : Boolean,
+                    c : Boolean,
+                    av : Number
+                };
+                a.p = document.getElementById('poligonos').checked;
+                a.pt = document.getElementById('pontos').checked;
+                a.c = document.getElementById('curvas').checked;
+                a.av = document.getElementById('aval').value;
+                m.sendMessage("atualizarInfo", a);
+            }
+
+            // function mostrarPoligono(valorPol){
+            //     pol = valorPol;
+            //     m.sendMessage("mostrarPoligono", pol);
+            // }
+
+            // function mostrarPonto(valorPonto){
+            //     pon = valorPonto;
+            //     m.sendMessage("mostrarPonto", pon);
+            // }
+
+            // function mostrarCurva(valorCurva){
+            //     cur = valorCurva;
+            //     m.sendMessage("mostrarCurva", cur);
+            // }
+
+            // function mudarT(newt){
+            //     m.sendMessage("mudarT", newt); 
+            // }
+
+            function adicionarcurva(){
+                m.sendMessage("adicionarCurva",{});
+            }
+
+            function deletarCurva(){
+                m.sendMessage("deletarCurva",{});
+            }
+           
+        </script>
+    </div>
+   
+</body>
+</html>
